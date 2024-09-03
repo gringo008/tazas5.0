@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal - Don Tazas</title>
+</head>
+<body>
+    <!-- Menú lateral -->
+    <div class="sidebar">
+        <a href="./HTML/TAZAS.HTML">Tazas</a>
+        <a href="./HTML/TAZONES.HTML">Tazones</a>
+        <a href="ofertas.html">Ofertas</a>
+
+        <!-- Botón de Iniciar Sesión -->
+        <a href="login.html" style="margin-top: 720px; padding: 10px; background-color: #007BFF; color: white; text-align: center; display: block; border-radius: 5px;">
+            Iniciar Sesión
+        </a>
+    </div>
+
+    <!-- Carrito de compras -->
+    <div id="shopping-cart" class="cart">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button id="close-cart">Cerrar</button>
+        </div>
+        <div id="cart-items">
+            <!-- Los artículos del carrito se generan aquí dinámicamente -->
+        </div>
+        <div id="cart-summary">
+            <div id="cart-subtotal">Subtotal: $0</div>
+            <div id="cart-total">Total: $0</div>
+            <button id="checkout-button">Pagar</button>
+        </div>
+    </div>
+    
+    <div id="cart-icon" class="cart-icon">
+        <img src="./imagenes.html/CARRITO.png" alt="Carrito de compras">
+        <span id="cart-count">0</span> <!-- Contador de artículos en el carrito -->
+    </div>
+
+    <a href="https://api.whatsapp.com/qr/YV6SKOTCAHSGP1" class="whatsapp-button" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <header>
+            <h1>Don Tazas - Página principal</h1>
+        </header>
+        <div class="container">
+            <div class="banner">
+                <div class="title">Una taza en el desayuno</div>
+                <div class="detail">
+                    <div class="info">
+                        <h2>Quién somos</h2>
+                        <div class="DES">
+                            Bienvenidos a Don Tazas, donde encontrarás tazas únicas que añaden alegría y estilo a tu rutina diaria. Ofrecemos diseños para todos los gustos, desde divertidos y personalizados hasta elegantes, perfectos para cualquier ocasión. Nuestra pasión es ofrecer tazas de alta calidad que transformen tu día con un toque de personalidad.
+                            Nos apasiona ofrecer productos de alta calidad que no solo son funcionales, sino que también aportan un toque de personalidad a tu día a día.
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="./imagenes.html/logo.webp" alt="Taza de Stitch">
+                    </div>
+                    <div class="opcion">
+                        Somos de Córdoba Capital y nos especializamos en la venta de tazas. Realizamos envíos y también ofrecemos la opción de retirar tu pedido en un punto de encuentro.
+                    </div>
+                </div>
+            </div>
+            <h2> novedades</h2>
+            <div class="items">
+                <!-- Aquí se cargarán los productos -->
+            </div>
+        </div>
+    </div>
+    <script src="./java/script.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Don Tazas</title>
+    <style>
+        body   body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .product-list {
+            margin-top: 20px;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .product-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .product-item div {
+            flex: 1;
+        }
+        .product-item .edit-button {
+            background-color: orange;
+        }
+        .product-item .edit-button:hover {
+            background-color: darkorange;
+        }
+        .product-item .delete-button {
+            background-color: red;
+        }
+        .product-item .delete-button:hover {
+            background-color: darkred;
+        }
+        .hidden {
+            display: none;
+        }
+        .redirect-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .redirect-button:hover {
+            background-color: #218838;
+        }
+        .admin-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .admin-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .admin-links a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <button class="redirect-button" onclick="window.location.href='tazas.html';">Ir a Tazas</button>
+    <div class="admin-links">
+        <a href="indexadmin.html">administrador pagina principal</a>
+        <a href="admintazones.html">Administrar Tazones</a>
+    </div>
+
+    
+    <div class="container">
+        <h1>Panel de Administración de Tazas</h1>
+
+        <!-- Formulario de Adición/Edición de Producto -->
+        <div id="productForm">
+            <div class="form-group">
+                <label for="productName">Nombre del Producto</label>
+                <input type="text" id="productName" placeholder="Nombre del producto">
+            </div>
+
+            <div class="form-group">
+                <label for="productId">ID del Producto</label>
+                <input type="text" id="productId" placeholder="ID del producto">
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Precio del Producto</label>
+                <input type="number" id="productPrice" placeholder="Precio del producto" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="productImageUrl">URL de la Imagen (opcional)</label>
+                <input type="text" id="productImageUrl" placeholder="URL de la imagen">
+            </div>
+
+            <div class="form-group">
+                <label for="productImageFile">Cargar Imagen (opcional)</label>
+                <input type="file" id="productImageFile" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <button id="saveProduct">Guardar Producto</button>
+            </div>
+        </div>
+
+        <h2>Lista de Productos</h2>
+        <div id="productList" class="product-list">
+            <!-- Aquí se cargarán los productos -->
+        </div>
+    </div>
+    <script src="./java/ADMINTAZAS.JS"></script>
+
+</body>
+</html>
+
+

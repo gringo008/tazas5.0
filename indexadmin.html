@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Don Tazas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .product-list {
+            margin-top: 20px;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .product-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .product-item div {
+            flex: 1;
+        }
+        .product-item .edit-button {
+            background-color: orange;
+        }
+        .product-item .edit-button:hover {
+            background-color: darkorange;
+        }
+        .product-item .delete-button {
+            background-color: red;
+        }
+        .product-item .delete-button:hover {
+            background-color: darkred;
+        }
+        .hidden {
+            display: none;
+        }
+        .redirect-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .redirect-button:hover {
+            background-color: #218838;
+        }
+        .admin-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .admin-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .admin-links a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button class="redirect-button" onclick="window.location.href='index.html';">Ir a Página Principal</button>
+
+    <div class="admin-links">
+        <a href="admintazas.html">Administrar Tazas</a>
+        <a href="admintazones.html">Administrar Tazones</a>
+    </div>
+
+    <div class="container">
+        <h1>Panel de Administración</h1>
+
+        <!-- Formulario de Adición/Edición de Producto -->
+        <div id="productForm">
+            <div class="form-group">
+                <label for="productName">Nombre del Producto</label>
+                <input type="text" id="productName" placeholder="Nombre del producto">
+            </div>
+
+            <div class="form-group">
+                <label for="productId">ID del Producto</label>
+                <input type="text" id="productId" placeholder="ID del producto">
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Precio del Producto</label>
+                <input type="number" id="productPrice" placeholder="Precio del producto" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="productImageUrl">URL de la Imagen (opcional)</label>
+                <input type="text" id="productImageUrl" placeholder="URL de la imagen">
+            </div>
+
+            <div class="form-group">
+                <label for="productImageFile">Cargar Imagen (opcional)</label>
+                <input type="file" id="productImageFile" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <button id="saveProduct">Guardar Producto</button>
+            </div>
+        </div>
+
+        <h2>Lista de Productos</h2>
+        <div id="productList" class="product-list">
+            <!-- Aquí se cargarán los productos -->
+        </div>
+    </div>
+    <script src="./java/indexadmin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveProductButton = document.getElementById('saveProduct');
+            const productList = document.getElementById('productList');
+            let editingProductId = null;
+
+            function loadProducts() {
+                const products = JSON.parse(localStorage.getItem('products')) || [];
+                productList.innerHTML = '';
+                
+                products.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.className = 'product-item';
+                    productElement.innerHTML = `
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                        <div>
+                            <strong>${product.name}</strong><br>
+                            <small>ID: ${product.id}</small><br>
+                            <small>Precio: $${product.price}</small>
+                        </div>
+                        <div>
+                            <button class="edit-button" data-id="${product.id}">Editar</button>
+                            <button class="delete-button" data-id="${product.id}">Eliminar</button>
+                        </div>
+                    `;
+                    productList.appendChild(productElement);
+                });
+
+                document.querySelectorAll('.edit-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-id');
+                        startEditing(productId);
+                    });
+                });
+
+                document.querySelectorAll('.delete-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-id');
+                        removeProduct(productId);
+                    });
+                });
+            }
+
+            function startEditing(productId) {
+                const products = JSON.parse(localStorage.getItem('products')) || [];
+                const product = products.find(p => p.id === productId);
+
+                if (product) {
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productId').value = product.id;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productImageUrl').value = product.imageUrl;
+
+                    editingProductId = productId;
+                }
+            }
+
+            function saveProduct() {
+                const name = document.getElementById('productName').value.trim();
+                const id = document.getElementById('productId').value.trim();
+                const price = parseFloat(document.getElementById('productPrice').value.trim());
+                const imageUrl = document.getElementById('productImageUrl').value.trim();
+                const imageFile = document.getElementById('productImageFile').files[0];
+
+                if (!name || !id || isNaN(price)) {
+                    alert('Por favor, completa todos los campos requeridos.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const products = JSON.parse(localStorage.getItem('products')) || [];
+                    const updatedProducts = products.map(product => {
+                        if (product.id === editingProductId) {
+                            return {
+                                name,
+                                id,
+                                price,
+                                imageUrl: imageFile ? event.target.result : imageUrl
+                            };
+                        }
+                        return product;
+                    });
+
+                    if (!editingProductId) {
+                        updatedProducts.push({
+                            name,
+                            id,
+                            price,
+                            imageUrl: imageFile ? event.target.result : imageUrl
+                        });
+                    }
+
+                    localStorage.setItem('products', JSON.stringify(updatedProducts));
+                    loadProducts();
+                    resetForm();
+                };
+
+                if (imageFile) {
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    reader.onload(); // Cargar la imagen URL si no hay archivo
+                }
+            }
+
+            function removeProduct(productId) {
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+                products = products.filter(product => product.id !== productId);
+                localStorage.setItem('products', JSON.stringify(products));
+                loadProducts();
+            }
+
+            function resetForm() {
+                document.getElementById('productName').value = '';
+                document.getElementById('productId').value = '';
+                document.getElementById('productPrice').value = '';
+                document.getElementById('productImageUrl').value = '';
+                document.getElementById('productImageFile').value = '';
+                editingProductId = null;
+            }
+
+            saveProductButton.addEventListener('click', saveProduct);
+            loadProducts();
+        });
+    </script>
+</body>
+</html>

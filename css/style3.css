@@ -1,0 +1,439 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #E6E6FA; /* Violeta pastel */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Contenedor principal */
+.container {
+    flex: 1; /* Asegura que el contenedor principal ocupe todo el espacio disponible */
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Banner */
+.banner {
+    margin: 20px 0;
+}
+
+.title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.detail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.info {
+    width: 40%;
+}
+
+.img {
+    width: 30%;
+}
+
+.img img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.opcion {
+    width: 30%;
+    padding-left: 20px;
+}
+
+/* Elementos interactivos */
+.card {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.list {
+    margin-bottom: 40px;
+}
+
+.list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.item {
+    width: 22%;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.item:hover {
+    transform: scale(1.1); /* Agranda la imagen un 10% */
+    cursor: pointer;
+}
+
+.item img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.item:hover img {
+    transform: translateY(-10px); /* Mueve la imagen hacia arriba */
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.price {
+    font-size: 18px;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    margin-top: auto; /* Mueve el footer al final de la página */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.copyright {
+    font-size: 14px; /* Tamaño del texto del copyright */
+    text-align: center; /* Alinea el texto al centro */
+    margin: 0; /* Elimina márgenes para centrar verticalmente */
+    flex: 1;
+}
+
+.user-button {
+    background-color: rgb(10, 10, 10); /* Color de fondo blanco */
+    color: #ffffff; /* Color del texto */
+    border: 2px solid #333; /* Borde del botón */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano al pasar sobre el botón */
+    box-shadow: 0 0 5px rgba(150, 18, 18, 0.2); /* Sombra opcional para el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+    position: absolute; /* Posicionamiento absoluto dentro del footer */
+    left: 10px; /* Ajusta la distancia del botón desde el borde izquierdo */
+    bottom: 10px; /* Ajusta la distancia del botón desde el borde inferior */
+}
+
+.user-button:hover {
+    background-color: #050505; /* Color de fondo al pasar el cursor */
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-button img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Carrito de compras */
+.cart {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Inicialmente oculto, mostrado cuando se agregan artículos */
+    z-index: 1000;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#cart-total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#checkout-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ebdcdc;
+    color: rgb(31, 29, 29);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+
+/* Icono del carrito */
+.cart-icon {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cart-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    header {
+        font-size: 20px;
+    }
+
+    .banner {
+        margin-top: 10px;
+    }
+
+    .detail {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info, .img, .opcion {
+        width: 100%;
+        padding: 0;
+    }
+
+    .items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .cart-icon img {
+        width: 35px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .user-button {
+        font-size: 14px;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .copyright {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .cart-icon img {
+        width: 30px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .user-button {
+        font-size: 12px;
+    }
+}
+
+/* Estilo para el contenedor del dropdown */
+.dropdown {
+    position: absolute;
+    top: 10px; /* Ajusta según sea necesario */
+    left: 10px; /* Alineado a la izquierda */
+    z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
+}
+
+/* Estilo para el enlace del dropdown */
+.dropdown-toggle {
+    cursor: pointer;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para el menú desplegable */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Justo debajo del enlace */
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    width: 150px; /* Ajusta el ancho según sea necesario */
+}
+
+/* Mostrar el menú cuando la clase 'show' está aplicada */
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Estilo para cada opción del menú */
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none; }
+    .sidebar {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        padding-top: 20px;
+        z-index: 1;
+    }
+
+    .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+    }
+
+    .sidebar a:hover {
+        background-color: #575757;
+    }
+
+    /* Ajustes para el contenido principal */
+    .main-content {
+        margin-left: 200px; /* Dejar espacio para el menú lateral */
+        padding: 0px;
+    }
+
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        width: 200px;
+        text-align: center;
+    }
+
+    .item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .item .title {
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .item .price {
+        color: green;
+        margin-bottom: 10px;
+    }
+
+    .item button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .item button:hover {
+        background-color: #0056b3;
+    }
