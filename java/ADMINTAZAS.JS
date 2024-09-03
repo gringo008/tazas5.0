@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let editingProductId = null;
 
     function loadProducts() {
-        const products = JSON.parse(localStorage.getItem('tazas')) || [];
+        const products = JSON.parse(localStorage.getItem('TAZAS.HTML')) || [];
         productList.innerHTML = '';
         
         products.forEach(product => {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startEditing(productId) {
-        const products = JSON.parse(localStorage.getItem('tazas')) || [];
+        const products = JSON.parse(localStorage.getItem('TAZAS.HTML')) || [];
         const product = products.find(p => p.id === productId);
 
         if (product) {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function removeProduct(productId) {
-        let products = JSON.parse(localStorage.getItem('tazas')) || [];
+        let products = JSON.parse(localStorage.getItem('TAZAS.HTML')) || [];
         products = products.filter(product => product.id !== productId);
         localStorage.setItem('tazas', JSON.stringify(products));
         loadProducts();
